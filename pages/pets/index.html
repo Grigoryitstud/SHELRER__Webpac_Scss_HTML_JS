@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>Shelter</title>
+</head>
+<body class="body">
+
+<header class="header">
+    <div class="container">
+        <div class="header__inner">
+
+            <a class="header__logo" href="../main/index.html">
+
+                <h1 class="header__titles">Cozy House</h1>
+                <div class="header__subtitles">Shelter for pets in Boston</div>
+            
+            </a>
+
+            <div class="header__burger" id="burger">
+
+                <span></span>
+
+            </div>
+
+
+            <nav class="header__menu" id="menu">
+                <ul class="header__list">
+
+                <li> <a class="header__link" href="../../pages/main/index.html">About the shelter</a> </li>
+                <li> <a class="header__link active" href="#">Our pets</a> </li>
+                <li> <a class="header__link" href="../../pages/main/index.html#helps">Help the shelter</a> </li>
+                <li> <a class="header__link" href="#cont">Contacts</a> </li>
+            
+                </ul>           
+            </nav>
+        </div>
+    </div>
+</header>
+<section class="pets">
+    <div class="container">
+
+        <div class="pets__inner">
+
+            <h3 class="pets__title">Our friends who<br>are looking for a house</h3>
+
+            <div class="pets__slider"  id="carousel-wraper">
+                <div class="carousel"  id="carousel">                  
+
+                    <div class="pets__slides active">
+
+                        <div class="slide" id="0">
+                            <img class="pets__img" src="../../img/pets-katrine.png" alt="">
+                            <div class="pets__name">Katrine</div>
+                            <button class='pets__btn'>Learn more</button>
+                        </div>
+                        
+
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div id="wrapper-modal">
+                <div id="overlay"></div>
+                <div id="modal-window">
+                    <div>
+                        <button id="btn-close">
+                            <img src="../../img/X.png" alt="">
+                        </button>
+                    </div>
+                    <div class="content">
+                        any content
+                    </div>
+                </div>
+            </div>
+
+            <div class="dots-wrapper">
+                <span class="dot inactive" id="btn-first">
+                    <img class="arrow2" src="../../img/a.png" alt="">
+                </span>
+                <span class="dot inactive" id="btn-prev">
+                    <img class="arrow2" src="../../img/b.png" alt="">
+                </span>
+                <span class="dot active">1</span>
+                <span class="dot" id="btn-next">
+                    <img class="arrow2" src="../../img/c.png" alt="">
+                </span>
+                <span class="dot" id="btn-last">
+                    <img class="arrow2" src="../../img/d.png" alt="">
+                </span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer class="foot" id="cont">
+
+    <div class="container">
+
+        <div class="contacts__inner">
+
+            <div class="contacts">
+
+                <h3 class="foote" >For questions and suggestions</h3>
+                <a href="https://www.google.com/intl/ru/gmail/about/">
+                <img class="location__inner" src="../../img/Mail.png" alt="">
+                </a>
+                <a href="tel:+136745677554">
+                <img src="../../img/Phone.png" alt="">
+                </a>
+
+            </div>
+
+            <div class="location">
+
+                <h3 class="foote" >We are waiting for your visit</h3>
+                <a href="https://goo.gl/maps/UstLaBz9tuvZai3M7" target="_blank">
+                <img class="location__inner" src="../../img/Boston.png" alt="">
+                </a>
+                <a href="https://goo.gl/maps/LRNKqL6RoyQDa42T8" target="_blank">
+                <img  src="../../img/London.png" alt="">
+                </a>
+
+            </div>
+
+            <img class="foot__icon" src="../../img/footer-puppy.png" alt="">
+
+        </div>
+
+    </div>
+
+</footer>
+
+<script src="pets.js"></script>
+
+</body>
+</html>
