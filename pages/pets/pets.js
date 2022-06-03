@@ -182,7 +182,8 @@ window.addEventListener('load', () => {
 const prev = document.getElementById('btn-prev'),
   last = document.getElementById('btn-last'),
   first = document.getElementById('btn-first'),
-  next = document.getElementById('btn-next');
+  next = document.getElementById('btn-next'),
+  activeDot = document.getElementById('active-btn');
 
 
 
@@ -193,16 +194,49 @@ const activePage = n => {
     page.classList.remove('active');
   }
   pages[n].classList.add('active');
+  activeDot.innerHTML = n + 1;
 }
 const prepareCurrentPage = ind => {
   activePage(index);
+}
+
+const lastDotsInactive = () => {
+  next.classList.add('inactive');
+  last.classList.add('inactive');
+}
+const lastDots = () => {
+  next.classList.remove('inactive');
+  last.classList.remove('inactive');
+}
+
+const firstDotsInactive = () => {
+  first.classList.add('inactive');
+  prev.classList.add('inactive');
+}
+const firstDots = () => {
+  first.classList.remove('inactive');
+   prev.classList.remove('inactive');
 }
 
 const nextPage = () => {
   if (index == pages.length - 1) {
     prepareCurrentPage(index);
   } else {
+    firstDots();
     index++;
+    if(index == pages.length - 1) {
+      lastDotsInactive ();
+    }
+    prepareCurrentPage(index);
+  }
+}
+const lastPage = () => {
+  if (index == pages.length - 1) {
+    prepareCurrentPage(index);
+  } else {
+    firstDots();
+    index = pages.length - 1;
+    lastDotsInactive ();
     prepareCurrentPage(index);
   }
 }
@@ -211,90 +245,28 @@ const prevPage = () => {
   if (index == 0) {
     prepareCurrentPage(index);
   } else {
+    lastDots ();
     index--;
+    if(index == 0) {
+      firstDotsInactive ();
+    }
+    prepareCurrentPage(index);
+  }
+}
+const firstPage = () => {
+  if (index == 0) {
+    prepareCurrentPage(index);
+  } else {
+    lastDots ();
+    index = 0;
+    firstDotsInactive ();
     prepareCurrentPage(index);
   }
 }
 
+
 prev.addEventListener('click', prevPage);
 next.addEventListener('click', nextPage);
-// first.addEventListener('click', firstPage);
-// last.addEventListener('click', lastPage);
-
-// const moveRight = () => {
-//   carousel.classList.add("transition_right");
-//   next.removeEventListener('click', moveRight);
-//   prev.removeEventListener('click', moveLeft);
-//   first.removeEventListener('click', moveFirst);
-//   last.removeEventListener('click', moveLast);
-// }
-// const moveLeft = () => {
-//   carousel.classList.add("transition_left");
-//   prev.removeEventListener('click', moveLeft);
-//   next.removeEventListener('click', moveRight);
-//   first.removeEventListener('click', moveFirst);
-//   last.removeEventListener('click', moveLast);
-// }
-// const moveFirst = () => {
-//   carousel.classList.add("transition_first");
-//   next.removeEventListener('click', moveRight);
-//   prev.removeEventListener('click', moveLeft);
-//   first.removeEventListener('click', moveFirst);
-//   last.removeEventListener('click', moveLast);
-// }
-// const moveLast = () => {
-//   carousel.classList.add("transition_last");
-//   prev.removeEventListener('click', moveLeft);
-//   next.removeEventListener('click', moveRight);
-//   first.removeEventListener('click', moveFirst);
-//   last.removeEventListener('click', moveLast);
-// }
-
-// next.addEventListener('click', moveRight);
-// prev.addEventListener('click', moveLeft);
-// first.addEventListener('click', moveFirst);
-// last.addEventListener('click', moveLast);
-
-// carousel.addEventListener("animationend", (animationEvent) => {
-//   if (animationEvent.animationName === "move_left") {
-//     carousel.classList.remove("transition_left");
-//   } else if (animationEvent.animationName === "move_right") {
-//     carousel.classList.remove("transition_right");
-//   } else if (animationEvent.animationName === "move_first") {
-//     carousel.classList.remove("transition_first");
-//     carousel.style.left = "0px";
-//   } else {
-//     carousel.classList.remove("transition_last");
-//     carousel.style.left = "none";
-//     carousel.style.right = "0px"
-//   }
-//   prev.addEventListener('click', moveFirst);
-//   next.addEventListener('click', moveLast)
-//   prev.addEventListener('click', moveLeft);
-//   next.addEventListener('click', moveRight)
-// })
-
-
-// const btnOpens = document.querySelectorAll('.pets__btn'),
-//   modal = document.getElementById('wrapper-modal'),
-//   overlay = document.getElementById('overlay'),
-//   btnClose = document.getElementById('btn-close');
-
-// const openModal = n => {
-//   modal.classList.add('active');
-//   body.classList.add('lock');
-// };
-
-
-// btnOpens.forEach((Element) => {
-//   Element.addEventListener('click', openModal);
-// })
-
-// function closeModal() {
-//   modal.classList.remove('active');
-//   body.classList.remove('lock');
-// }
-
-// overlay.addEventListener('click', closeModal);
-// btnClose.addEventListener('click', closeModal);
+first.addEventListener('click', firstPage);
+last.addEventListener('click', lastPage);
 
