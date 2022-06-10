@@ -84,19 +84,19 @@ p {
 
 @-webkit-keyframes move_right {
   from {
-    left: -990px;
+    left: 0%;
   }
   to {
-    left: -1980px;
+    left: -100%;
   }
 }
 
 @keyframes move_right {
   from {
-    left: -990px;
+    left: 0%;
   }
   to {
-    left: -1980px;
+    left: -100%;
   }
 }
 
@@ -109,19 +109,19 @@ p {
 
 @-webkit-keyframes move_left {
   from {
-    left: -990px;
+    left: 0%;
   }
   to {
-    left: 0px;
+    left: 100%;
   }
 }
 
 @keyframes move_left {
   from {
-    left: -990px;
+    left: 0%;
   }
   to {
-    left: 0px;
+    left: 100%;
   }
 }
 
@@ -654,7 +654,7 @@ p {
 }
 
 .body .pets__inner .wraper .pets__slider {
-  width: 990px;
+  max-width: 990px;
   overflow: hidden;
 }
 
@@ -671,16 +671,18 @@ p {
 }
 
 .body .pets__inner .wraper .pets__slider .carousel {
+  width: 300%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   position: relative;
-  left: -990px;
+  margin-left: -100%;
+  gap: 0.5%;
 }
 
 .body .pets__inner .wraper .pets__slider .carousel .item {
   max-width: 990px;
-  width: 100%;
+  width: 33%;
   /*w100+tab*/
   gap: 90px;
   position: relative;
@@ -780,7 +782,7 @@ p {
 .body .pets__inner .wraper #btn-prev, .body .pets__inner .wraper #btn-next {
   position: relative;
   height: 100%;
-  z-index: 1000;
+  z-index: 1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -916,7 +918,7 @@ p {
 }
 
 @media screen and (max-width: 1098px) {
-  .body .pets__inner #c {
+  .body .pets__inner #3 {
     display: none;
   }
   .body .pets__inner #a {
@@ -934,7 +936,7 @@ p {
   .body .pets__inner #btn-prev, .body .pets__inner #btn-next {
     bottom: 0;
   }
-  .body .pets__inner #b {
+  .body .pets__inner #2 {
     display: none;
   }
 }

@@ -1,16 +1,4 @@
-const burger = document.getElementById('burger'),
-  menu = document.getElementById('menu'),
-  body = document.querySelector('.body'),
-  title = document.querySelector('.header__titles'),
-  subtitles = document.querySelector('.header__subtitles');
-
-burger.addEventListener('click', () => {
-  burger.classList.toggle('active');
-  menu.classList.toggle('active');
-  body.classList.toggle('lock');
-  title.classList.toggle('lock');
-  subtitles.classList.toggle('lock');
-})
+const body = document.querySelector('.body');
 
 const pets = [
   {
@@ -114,6 +102,7 @@ const pets = [
   names = document.querySelectorAll('.pets__name'),
   carousel = document.getElementById('carousel'),
   petsSlides = document.querySelector('.pets__slides'),
+  // petsSlid = document.querySelectorAll('.pets__slides'),
   pages = carousel.children,
   slides = document.querySelectorAll('.slide');
 
@@ -148,12 +137,14 @@ const randomCards = () => {
   }
 }
 
-const load = () => {
+const load = (s) => {
+  // console.log(slides.length)
+  // console.log(petsSlid.length)
   const card = petsSlides.innerHTML;
   const page = carousel.innerHTML;
-
+  console.log(document.documentElement.clientWidth)
   for (let i = 1; i < (completedSlides.length); i++) {
-    if (i % 8 === 0) {
+    if (i % s === 0) {
       carousel.innerHTML += page;
       carousel.children[carousel.children.length - 1].classList.remove('active');
     }
@@ -161,9 +152,9 @@ const load = () => {
       carousel.children[carousel.children.length - 1].innerHTML += card
     }
   }
-  console.log(carousel.children)
 
   let imgs = document.querySelectorAll('.pets__img'),
+    btnOpen = document.querySelectorAll('.pets__btn'),
     names = document.querySelectorAll('.pets__name'),
     slides = document.querySelectorAll('.slide');
 
@@ -171,102 +162,37 @@ const load = () => {
     imgs[i].src = cards[i].img;
     slides[i].id = cards[i].cardId;
     names[i].innerHTML = cards[i].name;
+    btnOpen[i].classList.add('moda')
   }
 }
 
 window.addEventListener('load', () => {
   randomCards();
-  load();
-  console.log(pages);
+  if (document.documentElement.clientWidth > 1200) {
+    const s = 8;
+
+    load(s);
+  }
+  if (document.documentElement.clientWidth < 1200 && document.documentElement.clientWidth > 620) {
+    const s = 6;
+
+    load(s);
+  }
+  if (document.documentElement.clientWidth <= 620) {
+    const s = 3;
+
+    load(s);
+  }
 })
-const prev = document.getElementById('btn-prev'),
-  last = document.getElementById('btn-last'),
-  first = document.getElementById('btn-first'),
-  next = document.getElementById('btn-next'),
-  activeDot = document.getElementById('active-btn');
+
+window.addEventListener('resize', () => {
+  setTimeout(function(){
+    location.reload();
+  }, 1000)
+});
 
 
 
-let index = 0;
-
-const activePage = n => {
-  for (page of pages) {
-    page.classList.remove('active');
-  }
-  pages[n].classList.add('active');
-  activeDot.innerHTML = n + 1;
-}
-const prepareCurrentPage = ind => {
-  activePage(index);
-}
-
-const lastDotsInactive = () => {
-  next.classList.add('inactive');
-  last.classList.add('inactive');
-}
-const lastDots = () => {
-  next.classList.remove('inactive');
-  last.classList.remove('inactive');
-}
-
-const firstDotsInactive = () => {
-  first.classList.add('inactive');
-  prev.classList.add('inactive');
-}
-const firstDots = () => {
-  first.classList.remove('inactive');
-   prev.classList.remove('inactive');
-}
-
-const nextPage = () => {
-  if (index == pages.length - 1) {
-    prepareCurrentPage(index);
-  } else {
-    firstDots();
-    index++;
-    if(index == pages.length - 1) {
-      lastDotsInactive ();
-    }
-    prepareCurrentPage(index);
-  }
-}
-const lastPage = () => {
-  if (index == pages.length - 1) {
-    prepareCurrentPage(index);
-  } else {
-    firstDots();
-    index = pages.length - 1;
-    lastDotsInactive ();
-    prepareCurrentPage(index);
-  }
-}
-
-const prevPage = () => {
-  if (index == 0) {
-    prepareCurrentPage(index);
-  } else {
-    lastDots ();
-    index--;
-    if(index == 0) {
-      firstDotsInactive ();
-    }
-    prepareCurrentPage(index);
-  }
-}
-const firstPage = () => {
-  if (index == 0) {
-    prepareCurrentPage(index);
-  } else {
-    lastDots ();
-    index = 0;
-    firstDotsInactive ();
-    prepareCurrentPage(index);
-  }
-}
 
 
-prev.addEventListener('click', prevPage);
-next.addEventListener('click', nextPage);
-first.addEventListener('click', firstPage);
-last.addEventListener('click', lastPage);
 

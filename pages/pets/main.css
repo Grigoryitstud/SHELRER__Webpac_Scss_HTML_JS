@@ -487,7 +487,6 @@ body .pets__inner .pets__title {
 body .pets__inner .pets__slider {
   margin-top: 60px;
   max-width: 1200px;
-  overflow: hidden;
 }
 
 @media screen and (max-width: 900px) {

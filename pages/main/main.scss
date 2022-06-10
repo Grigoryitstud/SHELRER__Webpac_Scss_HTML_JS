@@ -111,16 +111,16 @@ $second-color: #FDDCC4;
     letter-spacing: 0.06em;
 }
 @keyframes move_right {
-    from {left: -990px;}
-    to {left: -1980px;}
+    from {left: 0%;}
+    to {left: -100%;}
 }
 .transition_right {
     animation-name: move_right;
     animation-duration: 5s;
 }
 @keyframes move_left {
-    from {left: -990px;}
-    to {left: 0px;}
+    from {left: 0%;}
+    to {left: 100%;}
 }
 .transition_left {
     animation-name: move_left;
@@ -490,14 +490,15 @@ $second-color: #FDDCC4;
                 line-height: 32.5px;
             }       
         }
-        .wraper {             
+        .wraper {         
             margin-top: 60px;
             @include flexSpaceBetween();
             height: 435px;
             align-items: center;
             .pets__slider {
-                width: 990px;
+                max-width: 990px; 
                 overflow: hidden;
+                
                 @media screen and (max-width: 768px) {
                     max-width: 580px;
                 } 
@@ -505,13 +506,15 @@ $second-color: #FDDCC4;
                     max-width: 270px;
                 } 
                 .carousel {
+                    width: 300%;
                     display: flex;
                     position: relative;
-                    left: -990px;
+                    margin-left: -100%; 
+                    gap: 0.5%; 
 
                     .item {
                         max-width: 990px;
-                        width: 100%;/*w100+tab*/
+                        width: 33%;/*w100+tab*/
                         gap: 90px;
                         @media screen and (max-width: 768px) {
                             margin-top: 42px;
@@ -525,7 +528,9 @@ $second-color: #FDDCC4;
                         @media screen and (max-width: 340px) {
                             max-width: 270px;
                             right: 10px;
-                        } 
+                        }
+                                               
+                        
                         
                         .slide {
                             width: 100%;
@@ -537,8 +542,7 @@ $second-color: #FDDCC4;
                             gap: 30px;
                             @media screen and (max-width: 688px) {
                                 height: 507px;
-                            }         
-
+                            } 
                             &:hover {
                                 cursor: pointer;
                                 background-color: #fff;
@@ -593,7 +597,7 @@ $second-color: #FDDCC4;
             #btn-prev, #btn-next {
                 position: relative;
                 height: 100%;
-                z-index: 1000;
+                z-index: 1;
     
                 display: flex;
                 justify-content: center;
@@ -712,7 +716,7 @@ $second-color: #FDDCC4;
 
         @media screen and (max-width: 1098px) {
 
-            #c {
+            #3 {
                 display: none;
             }
     
@@ -733,7 +737,7 @@ $second-color: #FDDCC4;
             #btn-prev, #btn-next {
                 bottom: 0;
             }   
-            #b {
+            #2 {
                 display: none;
             }
         }

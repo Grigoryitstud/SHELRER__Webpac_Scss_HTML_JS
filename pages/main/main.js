@@ -1,6 +1,4 @@
-const burger = document.getElementById('burger'),
-  menu = document.getElementById('menu'),
-  body = document.querySelector('.body'),
+const
 
   prev = document.getElementById('btn-prev'),
   next = document.getElementById('btn-next'),
@@ -8,26 +6,13 @@ const burger = document.getElementById('burger'),
   slides = document.querySelectorAll('.slide'),
   card__left = document.querySelectorAll('.card__left'),
   card__active = document.querySelectorAll('.card__active'),
+  card__right = document.querySelectorAll('.card__right'),
 
 
   item_left = document.getElementById('item__left'),
   item_right = document.getElementById('item__right'),
-  item_active = document.getElementById('item__active'),
+  item_active = document.getElementById('item__active');
 
-
-
-  modal = document.getElementById('wrapper-modal'),
-  btnOpens = document.querySelectorAll('.pets__btn'),
-  overlay = document.getElementById('overlay'),
-  btnClose = document.getElementById('btn-close');
-
-
-  burger.addEventListener('click', () => {
-    burger.classList.toggle('active');
-    menu.classList.toggle('active');
-    body.classList.toggle('lock');
-})
-  
 const pets = [
   {
     cardId: "0",
@@ -88,7 +73,7 @@ const pets = [
     inoculations: ["none"],
     diseases: ["none"],
     parasites: ["none"]
-  },  
+  },
   {
     cardId: "5",
     name: "Woody",
@@ -112,7 +97,7 @@ const pets = [
     inoculations: ["parainfluenza"],
     diseases: ["none"],
     parasites: ["none"]
-  },  
+  },
   {
     cardId: "7",
     name: "Freddie",
@@ -124,107 +109,121 @@ const pets = [
     inoculations: ["rabies"],
     diseases: ["none"],
     parasites: ["none"]
-  },  
-  ],
+  },
+],
   imgs = document.querySelectorAll('.pets__img'),
   names = document.querySelectorAll('.pets__name');
 
-  let completedSlides = [];
-  let activeSlides = [0, 1, 2, 6, 7];
-   
-  const randomIndex = () => {
-    let randomNumber = Math.floor(Math.random() * pets.length);
-    console.log(randomNumber);  
-    let hitDuplicate = false;    
-      while(completedSlides.length < card__active.length){
-        activeSlides.forEach(item => {
-          if(item == randomNumber) {
+ 
+
+const moveRight = () => {
+  carousel.classList.add("transition_right");
+  next.removeEventListener('click', moveRight);
+  prev.removeEventListener('click', moveLeft);
+}
+const moveLeft = () => {
+  carousel.classList.add("transition_left");
+  prev.removeEventListener('click', moveLeft);
+  next.removeEventListener('click', moveRight);
+}
+
+next.addEventListener('click', moveRight);
+prev.addEventListener('click', moveLeft);
+let completedSlides = [];
+const randomIndex = () => {
+  let randomNumber = Math.floor(Math.random() * pets.length);
+  let hitDuplicate = false;
+  while (completedSlides.length < card__active.length) {
+    card__right.forEach(el => {
+      console.log(el.id);
+      if (randomNumber == el.id) {
+        hitDuplicate = true;
+      }
+    })
+    if (completedSlides.length > 0) {
+      
+      completedSlides.forEach(el => {
+        
+        if (randomNumber == el) {
+          hitDuplicate = true;
+        }
+      })
+    }
+  
+    if (hitDuplicate == true) {
+      randomIndex();
+    } else {
+      completedSlides.push(randomNumber)
+      randomIndex();
+    }
+  }
+} 
+
+carousel.addEventListener("animationend", (animationEvent) => {  
+  
+  if (animationEvent.animationName === "move_left") {    
+    
+    carousel.classList.remove("transition_left");
+    completedSlides = [];
+    const randomIndex = () => {
+      let randomNumber = Math.floor(Math.random() * pets.length);
+      let hitDuplicate = false;
+      while (completedSlides.length < card__active.length) {
+        card__left.forEach(el => {
+          console.log(el.id);
+          if (randomNumber == el.id) {
             hitDuplicate = true;
-            } 
+          }
         })
-        if(completedSlides.length > 0){
-          completedSlides.forEach(item => {
-            if(item == randomNumber) {
+        if (completedSlides.length > 0) {
+          
+          completedSlides.forEach(el => {
+            
+            if (randomNumber == el) {
               hitDuplicate = true;
-              } 
+            }
           })
         }
-        if(hitDuplicate == true){
+      
+        if (hitDuplicate == true) {
           randomIndex();
         } else {
-          completedSlides.push(randomNumber) 
+          completedSlides.push(randomNumber)
+          randomIndex();
         }
-        
-      }       
-  }
-  const moveRight = () => {
-    carousel.classList.add("transition_right");
-    next.removeEventListener('click', moveRight);
-    prev.removeEventListener('click', moveLeft);
-  }     
-  const moveLeft = () => {
-    carousel.classList.add("transition_left");
-    prev.removeEventListener('click', moveLeft);
-    next.removeEventListener('click', moveRight);
-  }  
-  
-  next.addEventListener('click', moveRight);
-  prev.addEventListener('click', moveLeft);
-  
-  carousel.addEventListener("animationend", (animationEvent) => {
-    if(animationEvent.animationName === "move_left") {
-      carousel.classList.remove("transition_left");
-      completedSlides = [];
-      randomIndex();
-      activeSlides = completedSlides;   
-      
-      item_active.innerHTML = item_left.innerHTML;   
-      
-
-      imgs[0].src = pets[completedSlides[0]].img;
-      imgs[1].src = pets[completedSlides[1]].img;
-      imgs[2].src = pets[completedSlides[2]].img;
-
-      names[0].innerHTML = pets[completedSlides[0]].name;
-      names[1].innerHTML = pets[completedSlides[1]].name;
-      names[2].innerHTML = pets[completedSlides[2]].name;  
-    } else {
-      carousel.classList.remove("transition_right");
-      completedSlides = [];
-      randomIndex();
-      activeSlides = completedSlides;
-      
-      item_active.innerHTML = item_right.innerHTML;
-      
-
-      imgs[6].src = pets[completedSlides[0]].img;
-      imgs[7].src = pets[completedSlides[1]].img;
-      imgs[8].src = pets[completedSlides[2]].img;
-
-      names[6].innerHTML = pets[completedSlides[0]].name;
-      names[7].innerHTML = pets[completedSlides[1]].name;
-      names[8].innerHTML = pets[completedSlides[2]].name;  
+      }
     }
-    prev.addEventListener('click', moveLeft);
-    next.addEventListener('click', moveRight);
-  })
+    randomIndex();
+    item_right.innerHTML = item_active.innerHTML;
+    item_active.innerHTML = item_left.innerHTML;
+    let newCards = () =>{
+      for (i = 0; i < card__active.length; i++) {
+        console.log(imgs);
+        card__left[i].id = completedSlides[i]
+        imgs[i].src = pets[completedSlides[i]].img;
+        names[i].innerHTML = pets[completedSlides[i]].name;
+      }
+    }    
+    newCards(0); 
+  } else {
+    carousel.classList.remove("transition_right");
+    completedSlides = [];
+        
+    item_left.innerHTML = item_active.innerHTML;
+    item_active.innerHTML = item_right.innerHTML;
 
-
-              const openModal = n => {
-                        modal.classList.add('active');
-                        body.classList.add('lock');
-                    };                    
-                  
-                btnOpens.forEach((Element) => {
-                  Element.addEventListener('click', openModal);
-                })
-
-              function closeModal(){
-                  modal.classList.remove('active');
-                  body.classList.remove('lock');
-              }
-
-              overlay.addEventListener('click', closeModal);
-              btnClose.addEventListener('click', closeModal);
-
-
+    let newCards = () => {
+      randomIndex();
+      for (i = 0; i < card__active.length; i++) {
+        console.log(imgs);
+        card__right[i].id = completedSlides[i]
+        imgs[i + 6].src = pets[completedSlides[i]].img;
+        names[i + 6].innerHTML = pets[completedSlides[i]].name;
+      }
+    }
+    
+    newCards();   
+  }
+  prev.addEventListener('click', moveLeft);
+  next.addEventListener('click', moveRight);
+})
