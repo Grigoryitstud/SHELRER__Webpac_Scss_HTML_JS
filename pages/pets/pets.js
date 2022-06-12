@@ -1,4 +1,4 @@
-const body = document.querySelector('.body');
+const body = document.getElementById('body');
 
 const pets = [
   {
@@ -108,6 +108,7 @@ const pets = [
 
 let completedSlides = [];
 let cards = [];
+const btnOpen = document.getElementsByClassName('pets__btn');
 
 const randomCards = () => {
   let randomNumber = Math.floor(Math.random() * pets.length);
@@ -154,7 +155,6 @@ const load = (s) => {
   }
 
   let imgs = document.querySelectorAll('.pets__img'),
-    btnOpen = document.querySelectorAll('.pets__btn'),
     names = document.querySelectorAll('.pets__name'),
     slides = document.querySelectorAll('.slide');
 
@@ -162,8 +162,8 @@ const load = (s) => {
     imgs[i].src = cards[i].img;
     slides[i].id = cards[i].cardId;
     names[i].innerHTML = cards[i].name;
-    btnOpen[i].classList.add('moda')
   }
+  
 }
 
 window.addEventListener('load', () => {
@@ -183,10 +183,17 @@ window.addEventListener('load', () => {
 
     load(s);
   }
+  for (var i = 0, length = btnOpen.length; i < length; i++) {
+    btnOpen[i].addEventListener('click', function () {
+      openModal();
+    })
+  };
+  
+  
 })
 
 window.addEventListener('resize', () => {
-  setTimeout(function(){
+  setTimeout(function () {
     location.reload();
   }, 1000)
 });

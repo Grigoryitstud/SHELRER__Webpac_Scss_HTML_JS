@@ -155,6 +155,7 @@ p {
   max-width: 1280px;
   width: 100%;
   margin: 0 auto;
+  overflow: blue;
   background-color: #FAFAFA;
 }
 
@@ -632,7 +633,7 @@ p {
   text-align: center;
 }
 
-@media screen and (max-width: 340px) {
+@media screen and (max-width: 440px) {
   .body .pets__inner .pets__title {
     font-size: 25px;
     line-height: 32.5px;
@@ -640,6 +641,7 @@ p {
 }
 
 .body .pets__inner .wraper {
+  max-width: 1200px;
   margin-top: 60px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -647,27 +649,19 @@ p {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  width: 100%;
   height: 435px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+}
+
+@media screen and (max-width: 620px) {
+  .body .pets__inner .wraper {
+    height: 507;
+  }
 }
 
 .body .pets__inner .wraper .pets__slider {
   max-width: 990px;
   overflow: hidden;
-}
-
-@media screen and (max-width: 768px) {
-  .body .pets__inner .wraper .pets__slider {
-    max-width: 580px;
-  }
-}
-
-@media screen and (max-width: 620px) {
-  .body .pets__inner .wraper .pets__slider {
-    max-width: 270px;
-  }
 }
 
 .body .pets__inner .wraper .pets__slider .carousel {
@@ -689,25 +683,17 @@ p {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-}
-
-@media screen and (max-width: 768px) {
-  .body .pets__inner .wraper .pets__slider .carousel .item {
-    margin-top: 42px;
-    max-width: 580px;
-    gap: 40px;
-  }
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
 @media screen and (max-width: 340px) {
   .body .pets__inner .wraper .pets__slider .carousel .item {
     max-width: 270px;
-    right: 10px;
   }
 }
 
 .body .pets__inner .wraper .pets__slider .carousel .item .slide {
-  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -724,10 +710,8 @@ p {
   gap: 30px;
 }
 
-@media screen and (max-width: 688px) {
-  .body .pets__inner .wraper .pets__slider .carousel .item .slide {
-    height: 507px;
-  }
+.body .pets__inner .wraper .pets__slider .carousel .item .slide.no {
+  display: none;
 }
 
 .body .pets__inner .wraper .pets__slider .carousel .item .slide:hover {
@@ -741,8 +725,9 @@ p {
 }
 
 .body .pets__inner .wraper .pets__slider .carousel .item .slide .pets__img {
-  width: 270px;
-  height: 270px;
+  width: 100%;
+  max-width: 270px;
+  height: auto;
 }
 
 .body .pets__inner .wraper .pets__slider .carousel .item .slide .pets__name {
@@ -783,6 +768,7 @@ p {
   position: relative;
   height: 100%;
   z-index: 1;
+  top: 50%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -806,13 +792,14 @@ p {
 }
 
 .body .pets__inner .wraper #btn-prev {
-  left: 0;
+  left: 0px;
   right: auto;
 }
 
-@media screen and (max-width: 340px) {
+@media screen and (max-width: 390px) {
   .body .pets__inner .wraper #btn-prev {
     left: 55px;
+    top: 100%;
   }
 }
 
@@ -821,14 +808,14 @@ p {
   right: 0px;
 }
 
-@media screen and (max-width: 340px) {
+@media screen and (max-width: 390px) {
   .body .pets__inner .wraper #btn-next {
     right: 30px;
+    top: 100%;
   }
 }
 
 .body .pets__inner #wrapper-modal {
-  position: absolute;
   width: 100%;
   height: 100%;
   display: none;
@@ -839,7 +826,7 @@ p {
 }
 
 .body .pets__inner #wrapper-modal.active #overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -850,7 +837,7 @@ p {
 }
 
 .body .pets__inner #wrapper-modal.active #modal-window {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
@@ -863,7 +850,7 @@ p {
 }
 
 .body .pets__inner #wrapper-modal.active #modal-window #btn-close {
-  position: absolute;
+  position: fixed;
   top: -52px;
   right: -47px;
   background-color: rgba(28, 28, 28, 0);
@@ -906,12 +893,6 @@ p {
   background-color: #F1CDB3;
 }
 
-@media screen and (max-width: 340px) {
-  .body .pets__inner .petsMain__btn {
-    margin-top: 42px;
-  }
-}
-
 .body .pets__inner .petsMain__btn:hover {
   background-color: #FDDCC4;
   cursor: pointer;
@@ -929,15 +910,6 @@ p {
   }
   .body .pets__inner #btn-next {
     right: 50px;
-  }
-}
-
-@media screen and (max-width: 688px) {
-  .body .pets__inner #btn-prev, .body .pets__inner #btn-next {
-    bottom: 0;
-  }
-  .body .pets__inner #2 {
-    display: none;
   }
 }
 
