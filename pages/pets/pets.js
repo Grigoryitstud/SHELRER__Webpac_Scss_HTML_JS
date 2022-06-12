@@ -101,10 +101,12 @@ const pets = [
   imgs = document.querySelectorAll('.pets__img'),
   names = document.querySelectorAll('.pets__name'),
   carousel = document.getElementById('carousel'),
+  carouselStart = document.querySelector('carousel'),
   petsSlides = document.querySelector('.pets__slides'),
   // petsSlid = document.querySelectorAll('.pets__slides'),
   pages = carousel.children,
   slides = document.querySelectorAll('.slide');
+
 
 let completedSlides = [];
 let cards = [];
@@ -138,14 +140,25 @@ const randomCards = () => {
   }
 }
 
-const load = (s) => {
+const load = (n) => {
   // console.log(slides.length)
   // console.log(petsSlid.length)
+  carousel.innerHTML = `<div class="pets__slides active">
+
+  <div class="slide" id="0">
+      <img class="pets__img" src="../../img/pets-katrine.png" alt="">
+      <div class="pets__name">Katrine</div>
+      <button class='pets__btn'>Learn more</button>
+  </div>
+  
+
+</div>`
+  
   const card = petsSlides.innerHTML;
   const page = carousel.innerHTML;
   console.log(document.documentElement.clientWidth)
   for (let i = 1; i < (completedSlides.length); i++) {
-    if (i % s === 0) {
+    if (i % n === 0) {
       carousel.innerHTML += page;
       carousel.children[carousel.children.length - 1].classList.remove('active');
     }
@@ -169,33 +182,50 @@ const load = (s) => {
 window.addEventListener('load', () => {
   randomCards();
   if (document.documentElement.clientWidth > 1200) {
-    const s = 8;
+    let s = 8;
 
     load(s);
   }
   if (document.documentElement.clientWidth < 1200 && document.documentElement.clientWidth > 620) {
-    const s = 6;
+    let s = 6;
 
     load(s);
   }
   if (document.documentElement.clientWidth <= 620) {
-    const s = 3;
+    let s = 3;
 
     load(s);
   }
-  for (var i = 0, length = btnOpen.length; i < length; i++) {
-    btnOpen[i].addEventListener('click', function () {
-      openModal();
-    })
-  };
-  
+  for (btn of btnOpen) {
+    btn.addEventListener('click', e => openModal(e));
+  }; 
   
 })
 
 window.addEventListener('resize', () => {
-  setTimeout(function () {
-    location.reload();
-  }, 1000)
+  
+  if (document.documentElement.clientWidth > 1200) {
+    
+     s = 8;
+
+    load(s);
+  }
+  if (document.documentElement.clientWidth < 1200 && document.documentElement.clientWidth > 620) {
+     s = 6;
+    
+    load(s);
+  }
+  if (document.documentElement.clientWidth <= 620) {
+     s = 3;
+    
+    load(s);
+  }
+  for (btn of btnOpen) {
+    btn.addEventListener('click', e => openModal(e));
+  }; 
+  // setTimeout(function () {
+  //   location.reload();
+  // }, 1000)
 });
 
 

@@ -14,10 +14,8 @@ const
   item_active = document.getElementById('item__active');
 
   const btnOpen = document.getElementsByClassName('pets__btn');
-  for (var i = 0, length = btnOpen.length; i < length; i++) {
-    btnOpen[i].addEventListener('click', function () {
-      openModal();
-    })
+  for (btn of btnOpen) {
+    btn.addEventListener('click', e => openModal(e));
   };
 
 const pets = [
@@ -119,9 +117,7 @@ const pets = [
   },
 ],
   imgs = document.getElementsByClassName('pets__img'),
-  names = document.getElementsByClassName('pets__name'); 
-  console.log(card__active)
-    console.log(card__left)
+  names = document.getElementsByClassName('pets__name');
 
 const moveRight = () => {
   carousel.classList.add("transition_right");
@@ -138,7 +134,6 @@ prev.addEventListener('click', moveLeft);
 let completedSlides = [];
 
 const randomIndex = () => {
-  console.log(completedSlides)
   let randomNumber = Math.floor(Math.random() * pets.length);
   let hitDuplicate = false;
   while (completedSlides.length < card__active.length) {
@@ -183,6 +178,7 @@ window.addEventListener('load', () => {
     slides[4].classList.add("no");
     slides[7].classList.add("no");
   }
+  console.log(card__left)
 })
 window.addEventListener('resize', () => {
   setTimeout(function () {
@@ -237,17 +233,17 @@ carousel.addEventListener("animationend", (animationEvent) => {
     }    
     newCards(0);
     console.log(card__left)
-    console.log(card__left[1].innerHTML)
-    
   } else {
     carousel.classList.remove("transition_right");
     completedSlides = [];
-    let Random = () =>{
+    let Random = () => {
       for (i = 0; i < card__active.length; i++) {
+        console.log(card__active)
         card__left[i].innerHTML = card__active[i].innerHTML;
         card__left[i].id = card__active[i].id;
         card__active[i].innerHTML = card__right[i].innerHTML;
         card__active[i].id = card__right[i].id;
+        console.log(card__active)
       }
     }
     Random();
@@ -255,19 +251,17 @@ carousel.addEventListener("animationend", (animationEvent) => {
 
     let newCards = () => {
       for (i = 0; i < card__active.length; i++) {
+        console.log(card__active)
         card__right[i].id = completedSlides[i]
         imgs[6 + i].src = pets[completedSlides[i]].img;
         names[6 + i].innerHTML = pets[completedSlides[i]].name;
+        console.log(card__active)
       }
     }    
     newCards();
-    console.log(card__right)
-    console.log(card__right[1].innerHTML)
   }
-  for (var i = 0, length = btnOpen.length; i < length; i++) {
-    btnOpen[i].addEventListener('click', function () {
-      openModal();
-    })
+  for (btn of btnOpen) {
+    btn.addEventListener('click', e => openModal(e));
   };
   prev.addEventListener('click', moveLeft);
   next.addEventListener('click', moveRight);

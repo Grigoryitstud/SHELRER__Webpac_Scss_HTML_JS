@@ -16,6 +16,9 @@ const activePage = n => {
   activeDot.innerHTML = n + 1;
 }
 const prepareCurrentPage = ind => {
+  if(index > pages.length - 1){
+    index = pages.length - 1
+  }
   activePage(index);
 }
 

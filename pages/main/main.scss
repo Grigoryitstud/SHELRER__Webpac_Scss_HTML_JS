@@ -65,7 +65,6 @@ h4 {
     font-size: 20px;
     line-height: 23px;
     letter-spacing: 0.06em;
-    text-align: center;
 }
 
 h5 {
@@ -150,7 +149,6 @@ $second-color: #FDDCC4;
     &.lock {
         overflow: hidden;
     }
-    overflow: blue;
         
     @media screen and (max-width: 768px) {
         &.lock {
@@ -666,11 +664,87 @@ $second-color: #FDDCC4;
                     top: 50%;
                     left: 50%;
                     transform: translate(-50%,-50%);
-                    width: 900px;
+                    max-width: 900px;
+                    width: 100%;
                     height: 500px;
                     z-index: 2;
                     border-radius: 9px;
                     background-color: #FAFAFA;
+                    @media screen and (max-width: 1000px) {
+                        max-width: 630px;
+                        width: 100%;
+                        height: 350px;
+                    }
+                    @media screen and (max-width: 735px) {
+                        max-width: 240px;
+                        width: 100%;
+                        height: 341px;
+                    }  
+                    .content {
+                        display: flex;
+                        #pet__img {
+                            width: 500px;
+                            height: 500px;
+                            @media screen and (max-width: 1000px) {
+                                width: 350px;
+                                height: 350px;
+                            }
+                            @media screen and (max-width: 735px) {
+                                display: block;
+                                display: none;
+                            } 
+                        }
+                        #pet__about {
+                            margin: 50px 20px auto auto;
+                            @include flexSpaceBetween();
+                            height: 362px;
+                            flex-direction: column;
+                            color: #000;
+                            @media screen and (max-width: 1000px) {
+                                margin: 10px auto auto 10px;
+                                height: 303px;
+                            }
+                            @media screen and (max-width: 600px) {
+                                margin: 10px auto auto 10px;
+                                height: 303px;
+                            }
+                            .pets__main {
+                            @include flexSpaceBetween();
+                            flex-direction: column;
+                                #mod__title {
+                                    color: #000;
+                                    font-weight: 900;
+                                    @media screen and (max-width: 600px) {
+                                        font-size: 35px;
+                                    }
+                                }
+                                .mod__subtitle{
+                                    @media screen and (max-width: 600px) {
+                                        font-size: 20px;
+                                    }
+                                }
+
+                            }
+                            .pet__info {
+                                @media screen and (max-width: 600px) {
+                                    font-size: 12px;
+                                }
+                            }
+                            #pet__more {
+                                color: $main-color;
+                                @include textGorgia();
+                                position: relative;
+                                display: flex;
+                                flex-direction: column;
+                                gap: 10px;
+                                font-size: 15px;
+                                left: -23px;
+                                @media screen and (max-width: 600px) {
+                                    font-size: 12px;
+                                }
+                            }
+                        }
+                    }
                     #btn-close {
                         position: fixed;
                         top: -52px;
@@ -686,7 +760,10 @@ $second-color: #FDDCC4;
                         
                         border: 3px solid #F1CDB3;
                         box-sizing: border-box;
-                        border-radius: 100px;
+                        border-radius: 100px; 
+                        @media screen and (max-width: 600px) {
+                            right: -32px;
+                        }
 
                         cursor: pointer;
                         &:hover {
@@ -725,18 +802,6 @@ $second-color: #FDDCC4;
         }
 
         @media screen and (max-width: 1098px) {
-
-            #3 {
-                display: none;
-            }
-    
-            #a {
-                margin: 0 40px 0 64px;
-            }
-    
-            #b {
-                margin: 0 64px 0 0;
-            }
     
             #btn-next {
                 right: 50px;
@@ -808,6 +873,7 @@ $second-color: #FDDCC4;
 
             .help__text {
                 margin-top: 20px;
+                text-align: center;
                 @media screen and (max-width: 340px) {
                     font-size: 15px;
                     line-height: 16.5px;
