@@ -169,14 +169,14 @@ window.addEventListener('load', () => {
     slides[0].classList.add("no");
     slides[3].classList.add("no");
     slides[6].classList.add("no");
-    slides[1].classList.remove("no");
-    slides[4].classList.remove("no");
-    slides[7].classList.remove("no");
   }
   if (document.documentElement.clientWidth <= 720) {
     slides[1].classList.add("no");
     slides[4].classList.add("no");
     slides[7].classList.add("no");
+    slides[0].classList.add("no");
+    slides[3].classList.add("no");
+    slides[6].classList.add("no");
   }
   console.log(card__left)
 })
