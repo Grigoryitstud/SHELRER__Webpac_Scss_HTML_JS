@@ -612,8 +612,8 @@ body .pets__inner .pets__slider .carousel .pets__slides .slide .pets__btn {
 
 body .pets__inner .pets__slider .carousel .pets__slides .slide .pets__btn:hover {
   border: none;
-  -webkit-box-shadow: 0 4px 1px #B2B2B2;
-          box-shadow: 0 4px 1px #B2B2B2;
+  -webkit-box-shadow: 0 4px 1px #131111;
+          box-shadow: 0 4px 1px #131111;
   background: #FDDCC4;
 }
 
